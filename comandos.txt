@@ -1,0 +1,329 @@
+## Cosola
+
+iego@diego-Inspiron-3543:~$ cd production-proyect/
+diego@diego-Inspiron-3543:~/production-proyect$ sudo cp -r /home/diego/proyecto/securityfe .
+diego@diego-Inspiron-3543:~/production-proyect$ sudo cp -r /home/diego/proyecto/tendencias-mar22-security .
+diego@diego-Inspiron-3543:~/production-proyect$ sudo cp -r /home/diego/proyecto/docker-compose.yml .
+diego@diego-Inspiron-3543:~/production-proyect$ ls
+docker-compose.yml  securityfe  tendencias-mar22-security
+diego@diego-Inspiron-3543:~/production-proyect$ cd tendencias-mar22-security/
+diego@diego-Inspiron-3543:~/production-proyect/tendencias-mar22-security$ nano Dockerfile 
+diego@diego-Inspiron-3543:~/production-proyect/tendencias-mar22-security$ sudo nano Dockerfile 
+diego@diego-Inspiron-3543:~/production-proyect/tendencias-mar22-security$ code .
+diego@diego-Inspiron-3543:~/production-proyect/tendencias-mar22-security$ sudo nano Dockerfile 
+diego@diego-Inspiron-3543:~/production-proyect/tendencias-mar22-security$ cd ..
+diego@diego-Inspiron-3543:~/production-proyect$ cd securityfe/
+diego@diego-Inspiron-3543:~/production-proyect/securityfe$ sudo nano Dockerfile 
+diego@diego-Inspiron-3543:~/production-proyect/securityfe$ code .
+diego@diego-Inspiron-3543:~/production-proyect/securityfe$ sudo nano Dockerfile 
+diego@diego-Inspiron-3543:~/production-proyect/securityfe$ 
+diego@diego-Inspiron-3543:~/production-proyect/securityfe$ sudo nano nginx.conf
+diego@diego-Inspiron-3543:~/production-proyect/securityfe$ sudo nano nginx.conf
+diego@diego-Inspiron-3543:~/production-proyect/securityfe$ cd ..
+diego@diego-Inspiron-3543:~/production-proyect$ sudo nano docker-compose.yml 
+diego@diego-Inspiron-3543:~/production-proyect$ sudo nano .env
+diego@diego-Inspiron-3543:~/production-proyect$ docker compose up --build -d
+WARN[0000] /home/diego/production-proyect/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+[+] Running 15/15
+ ✔ db Pulled                                                                                                               23.4s 
+   ✔ dad67da3f26b Pull complete                                                                                            13.1s 
+   ✔ eb3a531023c8 Pull complete                                                                                            13.1s 
+   ✔ 05b641b3bdab Pull complete                                                                                            13.5s 
+   ✔ 64e8f1b2b243 Pull complete                                                                                            13.6s 
+   ✔ 603ef9fcdd8e Pull complete                                                                                            14.5s 
+   ✔ 8a1f652e0c97 Pull complete                                                                                            14.6s 
+   ✔ c6def2c6e21d Pull complete                                                                                            14.6s 
+   ✔ b47a445a47f0 Pull complete                                                                                            14.7s 
+   ✔ c95f49cc11b3 Pull complete                                                                                            21.2s 
+   ✔ 3664068a9b37 Pull complete                                                                                            21.2s 
+   ✔ abfd68ef219e Pull complete                                                                                            21.3s 
+   ✔ 928d00623a6e Pull complete                                                                                            21.3s 
+   ✔ db3ab53631e4 Pull complete                                                                                            21.4s 
+   ✔ f4ce9941f6e3 Pull complete                                                                                            21.4s 
+Compose can now delegate builds to bake for better performance.
+ To do so, set COMPOSE_BAKE=true.
+[+] Building 120.1s (30/30) FINISHED                                                                              docker:default
+ => [backend internal] load build definition from Dockerfile                                                                0.0s
+ => => transferring dockerfile: 361B                                                                                        0.0s
+ => [backend internal] load metadata for docker.io/library/eclipse-temurin:21-jdk-alpine                                    0.9s
+ => [backend internal] load metadata for docker.io/library/maven:3.8.6-eclipse-temurin-17                                   0.9s
+ => [backend internal] load .dockerignore                                                                                   0.0s
+ => => transferring context: 2B                                                                                             0.0s
+ => [backend build 1/5] FROM docker.io/library/maven:3.8.6-eclipse-temurin-17@sha256:5092873778f0495464c1151df8f5c2e01a09b  0.0s
+ => [backend internal] load build context                                                                                   0.0s
+ => => transferring context: 13.58kB                                                                                        0.0s
+ => [backend stage-1 1/3] FROM docker.io/library/eclipse-temurin:21-jdk-alpine@sha256:2f2f553ce09d25e2d2f0f521ab94cd73f70c  0.0s
+ => CACHED [backend build 2/5] WORKDIR /app                                                                                 0.0s
+ => [backend build 3/5] COPY pom.xml .                                                                                      2.7s
+ => [backend build 4/5] COPY src ./src                                                                                      0.1s
+ => [backend build 5/5] RUN mvn clean package -DskipTests                                                                  70.0s
+ => CACHED [backend stage-1 2/3] WORKDIR /app                                                                               0.0s 
+ => [backend stage-1 3/3] COPY --from=build /app/target/security-0.0.1-SNAPSHOT.jar ./app.jar                               0.3s 
+ => [backend] exporting to image                                                                                            0.5s 
+ => => exporting layers                                                                                                     0.4s 
+ => => writing image sha256:e282470ab9a90ed39e875633bbcefe2b39fd05cfdb87d5f610921f6bcb1ffbe9                                0.0s 
+ => => naming to docker.io/library/production-proyect-backend                                                               0.0s 
+ => [backend] resolving provenance for metadata file                                                                        0.0s
+ => [frontend internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 299B                                                                                        0.0s
+ => [frontend internal] load metadata for docker.io/library/nginx:stable-alpine                                             1.4s
+ => [frontend internal] load metadata for docker.io/library/node:18                                                         1.4s
+ => [frontend internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                             0.0s
+ => [frontend builder 1/5] FROM docker.io/library/node:18@sha256:c6ae79e38498325db67193d391e6ec1d224d96c693a8a4d9434985567  0.0s
+ => [frontend internal] load build context                                                                                 11.8s
+ => => transferring context: 135.59MB                                                                                      11.6s
+ => CACHED [frontend stage-1 1/3] FROM docker.io/library/nginx:stable-alpine@sha256:aed99734248e851764f1f2146835ecad42b5f9  0.0s
+ => CACHED [frontend builder 2/5] WORKDIR /app                                                                              0.0s
+ => [frontend builder 3/5] COPY . .                                                                                         6.3s
+ => [frontend builder 4/5] RUN npm install                                                                                  3.6s
+ => [frontend builder 5/5] RUN npm run build                                                                               20.3s
+ => [frontend stage-1 2/3] COPY --from=builder /app/dist /usr/share/nginx/html                                              0.1s
+ => [frontend stage-1 3/3] COPY nginx.conf /etc/nginx/conf.d/default.conf                                                   0.1s
+ => [frontend] exporting to image                                                                                           0.1s
+ => => exporting layers                                                                                                     0.1s
+ => => writing image sha256:ff508ec42bb522e1cb16deb5f653adfcdce2f29cce908b16a61453d83a8fe9d9                                0.0s
+ => => naming to docker.io/library/production-proyect-frontend                                                              0.0s
+ => [frontend] resolving provenance for metadata file                                                                       0.0s
+WARN[0023] current commit information was not captured by the build  error="failed to read current commit information with git rev-parse --is-inside-work-tree"
+WARN[0098] current commit information was not captured by the build  error="failed to read current commit information with git rev-parse --is-inside-work-tree"
+[+] Running 5/7
+ ✔ backend                                 Built                                                                            0.0s 
+ ✔ frontend                                Built                                                                            0.0s 
+ ✔ Network production-proyect_app-network  Created                                                                          0.1s 
+ ✔ Volume "production-proyect_db_data"     Created                                                                          0.0s 
+ ✔ Container db                            Created                                                                          0.1s 
+ ⠋ Container app-backend                   Creating                                                                         0.0s 
+ ⠋ Container pgadmin                       Creating                                                                         0.0s 
+Error response from daemon: Conflict. The container name "/app-backend" is already in use by container "96af3506189966f71766a4a9e2f0768ed8f81956b10e1406d6702bf6bb5dfc13". You have to remove (or rename) that container to be able to reuse that name.
+diego@diego-Inspiron-3543:~/production-proyect$ docker ps -a
+CONTAINER ID   IMAGE                               COMMAND                  CREATED         STATUS                     PORTS                                              NAMES
+3f65afb51589   postgres                            "docker-entrypoint.s…"   2 minutes ago   Created                                                                       db
+96af35061899   proyecto-backend                    "java -jar app.jar"      6 days ago      Exited (143) 6 days ago                                                       app-backend
+8bcc0a07e949   proyecto-frontend                   "/docker-entrypoint.…"   6 days ago      Exited (0) 6 days ago                                                         app-frontend
+d90910f24369   dpage/pgadmin4                      "/entrypoint.sh"         6 days ago      Up About an hour           443/tcp, 0.0.0.0:5050->80/tcp, [::]:5050->80/tcp   pgadmin
+e5679c6d529c   postgres:15                         "docker-entrypoint.s…"   6 days ago      Exited (128) 6 days ago                                                       postgres-db
+cec2cca75fe4   tendencias-mar22-security-backend   "java -jar app.jar"      13 days ago     Exited (143) 13 days ago                                                      securitybe
+d82f5d4d2bea   postgres:15                         "docker-entrypoint.s…"   13 days ago     Exited (0) 13 days ago                                                        postgresdb
+b64b378b90f7   phpmyadmin/phpmyadmin               "/docker-entrypoint.…"   5 weeks ago     Up About an hour           0.0.0.0:8081->80/tcp, [::]:8081->80/tcp            gabo_phpmyadmin
+2d50ab936890   mysql:8.0                           "docker-entrypoint.s…"   5 weeks ago     Up About an hour           3306/tcp, 33060/tcp                                gabo_mysql
+diego@diego-Inspiron-3543:~/production-proyect$ docker rm app-backend app-frontend pgadmin
+app-backend
+app-frontend
+Error response from daemon: cannot remove container "pgadmin": container is running: stop the container before removing or force remove
+diego@diego-Inspiron-3543:~/production-proyect$ docker stop $(docker ps -q)
+d90910f24369
+b64b378b90f7
+2d50ab936890
+diego@diego-Inspiron-3543:~/production-proyect$ docker rm app-backend app-frontend pgadmin
+pgadmin
+Error response from daemon: No such container: app-backend
+Error response from daemon: No such container: app-frontend
+diego@diego-Inspiron-3543:~/production-proyect$ docker rm app-backend 
+Error response from daemon: No such container: app-backend
+diego@diego-Inspiron-3543:~/production-proyect$ docker ps -a
+CONTAINER ID   IMAGE                               COMMAND                  CREATED         STATUS                          PORTS     NAMES
+3f65afb51589   postgres                            "docker-entrypoint.s…"   4 minutes ago   Created                                   db
+e5679c6d529c   postgres:15                         "docker-entrypoint.s…"   6 days ago      Exited (128) 6 days ago                   postgres-db
+cec2cca75fe4   tendencias-mar22-security-backend   "java -jar app.jar"      13 days ago     Exited (143) 13 days ago                  securitybe
+d82f5d4d2bea   postgres:15                         "docker-entrypoint.s…"   13 days ago     Exited (0) 13 days ago                    postgresdb
+b64b378b90f7   phpmyadmin/phpmyadmin               "/docker-entrypoint.…"   5 weeks ago     Exited (0) About a minute ago             gabo_phpmyadmin
+2d50ab936890   mysql:8.0                           "docker-entrypoint.s…"   5 weeks ago     Exited (0) About a minute ago             gabo_mysql
+diego@diego-Inspiron-3543:~/production-proyect$ docker compose up --build -d
+WARN[0000] /home/diego/production-proyect/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+Compose can now delegate builds to bake for better performance.
+ To do so, set COMPOSE_BAKE=true.
+[+] Building 4.0s (30/30) FINISHED                                                                                docker:default
+ => [backend internal] load build definition from Dockerfile                                                                0.0s
+ => => transferring dockerfile: 361B                                                                                        0.0s
+ => [backend internal] load metadata for docker.io/library/eclipse-temurin:21-jdk-alpine                                    1.1s
+ => [backend internal] load metadata for docker.io/library/maven:3.8.6-eclipse-temurin-17                                   1.1s
+ => [backend internal] load .dockerignore                                                                                   0.0s
+ => => transferring context: 2B                                                                                             0.0s
+ => [backend build 1/5] FROM docker.io/library/maven:3.8.6-eclipse-temurin-17@sha256:5092873778f0495464c1151df8f5c2e01a09b  0.0s
+ => [backend internal] load build context                                                                                   0.0s
+ => => transferring context: 2.02kB                                                                                         0.0s
+ => [backend stage-1 1/3] FROM docker.io/library/eclipse-temurin:21-jdk-alpine@sha256:2f2f553ce09d25e2d2f0f521ab94cd73f70c  0.0s
+ => CACHED [backend stage-1 2/3] WORKDIR /app                                                                               0.0s
+ => CACHED [backend build 2/5] WORKDIR /app                                                                                 0.0s
+ => CACHED [backend build 3/5] COPY pom.xml .                                                                               0.0s
+ => CACHED [backend build 4/5] COPY src ./src                                                                               0.0s
+ => CACHED [backend build 5/5] RUN mvn clean package -DskipTests                                                            0.0s
+ => CACHED [backend stage-1 3/3] COPY --from=build /app/target/security-0.0.1-SNAPSHOT.jar ./app.jar                        0.0s
+ => [backend] exporting to image                                                                                            0.0s
+ => => exporting layers                                                                                                     0.0s
+ => => writing image sha256:e282470ab9a90ed39e875633bbcefe2b39fd05cfdb87d5f610921f6bcb1ffbe9                                0.0s
+ => => naming to docker.io/library/production-proyect-backend                                                               0.0s
+ => [backend] resolving provenance for metadata file                                                                        0.0s
+ => [frontend internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 299B                                                                                        0.0s
+ => [frontend internal] load metadata for docker.io/library/nginx:stable-alpine                                             0.5s
+ => [frontend internal] load metadata for docker.io/library/node:18                                                         0.5s
+ => [frontend internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                             0.0s
+ => [frontend builder 1/5] FROM docker.io/library/node:18@sha256:c6ae79e38498325db67193d391e6ec1d224d96c693a8a4d9434985567  0.0s
+ => [frontend stage-1 1/3] FROM docker.io/library/nginx:stable-alpine@sha256:aed99734248e851764f1f2146835ecad42b5f994081fa  0.0s
+ => [frontend internal] load build context                                                                                  2.0s
+ => => transferring context: 1.58MB                                                                                         1.9s
+ => CACHED [frontend builder 2/5] WORKDIR /app                                                                              0.0s
+ => CACHED [frontend builder 3/5] COPY . .                                                                                  0.0s
+ => CACHED [frontend builder 4/5] RUN npm install                                                                           0.0s
+ => CACHED [frontend builder 5/5] RUN npm run build                                                                         0.0s
+ => CACHED [frontend stage-1 2/3] COPY --from=builder /app/dist /usr/share/nginx/html                                       0.0s
+ => CACHED [frontend stage-1 3/3] COPY nginx.conf /etc/nginx/conf.d/default.conf                                            0.0s
+ => [frontend] exporting to image                                                                                           0.0s
+ => => exporting layers                                                                                                     0.0s
+ => => writing image sha256:ff508ec42bb522e1cb16deb5f653adfcdce2f29cce908b16a61453d83a8fe9d9                                0.0s
+ => => naming to docker.io/library/production-proyect-frontend                                                              0.0s
+ => [frontend] resolving provenance for metadata file                                                                       0.0s
+WARN[0000] current commit information was not captured by the build  error="failed to read current commit information with git rev-parse --is-inside-work-tree"
+WARN[0001] current commit information was not captured by the build  error="failed to read current commit information with git rev-parse --is-inside-work-tree"
+[+] Running 5/6
+ ✔ backend                 Built                                                                                            0.0s 
+ ✔ frontend                Built                                                                                            0.0s 
+ ✔ Container app-backend   Created                                                                                          0.1s 
+ ✔ Container pgadmin       Created                                                                                          0.1s 
+ ✔ Container app-frontend  Created                                                                                          0.1s 
+ ⠼ Container db            Starting                                                                                         0.4s 
+Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint db (c38b82d1d9073f2d4ed4bb469b11d07a9a86d01059bf8a0ad3c7fac2f6e5c2e4): failed to bind host port for 0.0.0.0:5432:172.21.0.2:5432/tcp: address already in use
+diego@diego-Inspiron-3543:~/production-proyect$ sudo lsof -i :5432
+COMMAND   PID     USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+postgres 1290 postgres    6u  IPv4  11581      0t0  TCP localhost:postgresql (LISTEN)
+diego@diego-Inspiron-3543:~/production-proyect$ sudo systemctl stop postgresql
+diego@diego-Inspiron-3543:~/production-proyect$ docker compose up --build -d
+WARN[0000] /home/diego/production-proyect/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+Compose can now delegate builds to bake for better performance.
+ To do so, set COMPOSE_BAKE=true.
+[+] Building 3.3s (30/30) FINISHED                                                                                docker:default
+ => [backend internal] load build definition from Dockerfile                                                                0.0s
+ => => transferring dockerfile: 361B                                                                                        0.0s
+ => [backend internal] load metadata for docker.io/library/eclipse-temurin:21-jdk-alpine                                    0.5s
+ => [backend internal] load metadata for docker.io/library/maven:3.8.6-eclipse-temurin-17                                   0.4s
+ => [backend internal] load .dockerignore                                                                                   0.0s
+ => => transferring context: 2B                                                                                             0.0s
+ => [backend build 1/5] FROM docker.io/library/maven:3.8.6-eclipse-temurin-17@sha256:5092873778f0495464c1151df8f5c2e01a09b  0.0s
+ => [backend internal] load build context                                                                                   0.0s
+ => => transferring context: 2.02kB                                                                                         0.0s
+ => [backend stage-1 1/3] FROM docker.io/library/eclipse-temurin:21-jdk-alpine@sha256:2f2f553ce09d25e2d2f0f521ab94cd73f70c  0.0s
+ => CACHED [backend stage-1 2/3] WORKDIR /app                                                                               0.0s
+ => CACHED [backend build 2/5] WORKDIR /app                                                                                 0.0s
+ => CACHED [backend build 3/5] COPY pom.xml .                                                                               0.0s
+ => CACHED [backend build 4/5] COPY src ./src                                                                               0.0s
+ => CACHED [backend build 5/5] RUN mvn clean package -DskipTests                                                            0.0s
+ => CACHED [backend stage-1 3/3] COPY --from=build /app/target/security-0.0.1-SNAPSHOT.jar ./app.jar                        0.0s
+ => [backend] exporting to image                                                                                            0.0s
+ => => exporting layers                                                                                                     0.0s
+ => => writing image sha256:e282470ab9a90ed39e875633bbcefe2b39fd05cfdb87d5f610921f6bcb1ffbe9                                0.0s
+ => => naming to docker.io/library/production-proyect-backend                                                               0.0s
+ => [backend] resolving provenance for metadata file                                                                        0.0s
+ => [frontend internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 299B                                                                                        0.0s
+ => [frontend internal] load metadata for docker.io/library/nginx:stable-alpine                                             0.5s
+ => [frontend internal] load metadata for docker.io/library/node:18                                                         0.4s
+ => [frontend internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                             0.0s
+ => [frontend builder 1/5] FROM docker.io/library/node:18@sha256:c6ae79e38498325db67193d391e6ec1d224d96c693a8a4d9434985567  0.0s
+ => [frontend internal] load build context                                                                                  1.9s
+ => => transferring context: 1.58MB                                                                                         1.8s
+ => [frontend stage-1 1/3] FROM docker.io/library/nginx:stable-alpine@sha256:aed99734248e851764f1f2146835ecad42b5f994081fa  0.0s
+ => CACHED [frontend builder 2/5] WORKDIR /app                                                                              0.0s
+ => CACHED [frontend builder 3/5] COPY . .                                                                                  0.0s
+ => CACHED [frontend builder 4/5] RUN npm install                                                                           0.0s
+ => CACHED [frontend builder 5/5] RUN npm run build                                                                         0.0s
+ => CACHED [frontend stage-1 2/3] COPY --from=builder /app/dist /usr/share/nginx/html                                       0.0s
+ => CACHED [frontend stage-1 3/3] COPY nginx.conf /etc/nginx/conf.d/default.conf                                            0.0s
+ => [frontend] exporting to image                                                                                           0.0s
+ => => exporting layers                                                                                                     0.0s
+ => => writing image sha256:ff508ec42bb522e1cb16deb5f653adfcdce2f29cce908b16a61453d83a8fe9d9                                0.0s
+ => => naming to docker.io/library/production-proyect-frontend                                                              0.0s
+ => [frontend] resolving provenance for metadata file                                                                       0.0s
+WARN[0000] current commit information was not captured by the build  error="failed to read current commit information with git rev-parse --is-inside-work-tree"
+WARN[0000] current commit information was not captured by the build  error="failed to read current commit information with git rev-parse --is-inside-work-tree"
+[+] Running 6/6
+ ✔ backend                 Built                                                                                            0.0s 
+ ✔ frontend                Built                                                                                            0.0s 
+ ✔ Container db            Started                                                                                          0.4s 
+ ✔ Container pgadmin       Started                                                                                          0.5s 
+ ✔ Container app-backend   Started                                                                                          0.6s 
+ ✔ Container app-frontend  Started      
+
+##Nuevo Dockerfile para el backend----------------------------------------------------------------------
+
+              # Etapa 1: Build
+FROM node:18 AS builder
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build
+
+# Etapa 2: Servir con nginx
+FROM nginx:stable-alpine
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+
+##Nuevo yml--------------------------------------------------------------------------------------
+
+  GNU nano 7.2                                                                                                                  docker-compose.yml                                                                                                                            
+version: "3.8"
+
+networks:
+  app-network:
+
+services:
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: postgres
+    container_name: db
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./tendencias-mar22-security
+      dockerfile: Dockerfile
+    container_name: app-backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${DB_NAME}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./securityfe
+      dockerfile: Dockerfile
+    container_name: app-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
