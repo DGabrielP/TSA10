@@ -119,7 +119,7 @@ NOTA. Poco legible por el tamaño del archivo, mejor revizar en comandos.txt
 
 **Resultado 2:** Por último, y lo más importante: abrimos la aplicación web en http://localhost:5173. Aunque la interfaz parece igual, si vamos a Inspeccionar → Recursos → index.js, veremos que el código ahora es muy diferente; está más ilegible, sin variables ni nombres claros. A este estado se le conoce como “minificado”, y es un claro indicativo de que la aplicación se ha levantado en modo producción.
 
-![Figura 1. clone](./img/pgserver.png)
+![Figura 1. clone](./img/resultado.png)
 
 ## 10. Bibliografía
 
